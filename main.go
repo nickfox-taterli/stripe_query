@@ -26,8 +26,8 @@ func main(){
 
 	b, err := balance.Get(nil)
 	if err == nil {
-		Available := float32(b.Available[0].Value) / 100.0
-		Pending := float32(b.Pending[0].Value) / 100.0
+		Available := float32(b.Available[0].Value)
+		Pending := float32(b.Pending[0].Value)
 		fmt.Printf("钱包可用余额:%.2f,冻结余额:%.2f\n",Available,Pending)
 	}
 
@@ -44,7 +44,7 @@ func main(){
 
 	for i.Next() {
 		bt := i.BalanceTransaction()
-		t.Push(bt.ID,bt.Source.ID,float32(bt.Amount) / 100.0,time.Unix(bt.Created, 0).Format("2006-01-02 15:04:05"))
+		t.Push(bt.ID,bt.Source.ID,float32(bt.Amount),time.Unix(bt.Created, 0).Format("2006-01-02 15:04:05"))
 	}
 
 	t.Print()
